@@ -1,0 +1,27 @@
+import sys
+
+def process_argument(argument):
+    if argument == '0':
+        write_to_file("0", "path_to_file.txt")  # Replace "path_to_file.txt" with your desired file path
+    else:
+        read_and_print_file_content("path_to_file.txt")  # Replace "path_to_file.txt" with your file path
+
+def write_to_file(content, file_path):
+    with open(file_path, 'w') as file:
+        file.write(content)
+    print(f"Content '{content}' has been written to {file_path}")
+
+def read_and_print_file_content(file_path):
+    try:
+        with open(file_path, 'r') as file:
+            content = file.read()
+            print(f"File content: {content}")
+    except FileNotFoundError:
+        print(f"File not found at path: {file_path}")
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <argument>")
+    else:
+        argument = sys.argv[1]
+        process_argument(argument)
